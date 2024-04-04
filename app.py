@@ -155,11 +155,6 @@ def register():
 @app.route('/home')
 @jwt_required()
 def home():
-    if os.path.exists(f'{os.getcwd()}/static/Resources/temp/{session["user_email"]}.mp4'):
-        os.remove(f'{os.getcwd()}/static/Resources/temp/{session["user_email"]}.json')
-        os.remove(f'{os.getcwd()}/static/Resources/temp/{session["user_email"]}.mp3')
-        os.remove(f'{os.getcwd()}/static/Resources/temp/{session["user_email"]}.mp4')
-
     return render_template('main_page.html', username = session['user_name'], image_list = get_list_of_images(session['user_email']))
 
 
@@ -174,20 +169,16 @@ def upload():
             return redirect(request.url)
 
 
+        i = 1
         if image and allowed_file(image.filename):
-            print("saved")
-
             filename = secure_filename(image.filename)
             basedir = os.path.abspath(os.path.dirname(__file__))
-            image.save(os.path.join(basedir, app.config['IMAGE_UPLOADS'], "1.jpeg"))
+            image.save(os.path.join(basedir, app.config['IMAGE_UPLOADS'], f"{i}.jpeg"))
             
-            print("saved")
 
             for image_path in USABLE_UPLOAD_PATH.iterdir():
                 image_bytes = bytes_to_base64(image_path.read_bytes())
-
                 store_image_bytes(image_bytes, session['user_id'], filename, metadata_to_type(filename))
-                image_path.unlink()
 
             return redirect(url_for('upload'))
 
@@ -206,7 +197,7 @@ def select_images():
 @jwt_required()
 def recieve_images():
     if request.method == 'POST':
-        with open(f'{os.getcwd()}/static/Resources/temp/{session["user_email"]}.json', 'w') as f:
+        with open(f'{os.getcwd()}/static/Resources/temp/user.json', 'w') as f:
             f.write(json.dumps(request.json))
         return jsonify({'status': 'success'}), 200
 
@@ -218,10 +209,10 @@ def recieve_images():
 def select_audio():
     if request.method == 'POST':
         audio_id = request.form.get('audio')
-        with open(f'{os.getcwd()}/static/Resources/temp/{session["user_email"]}.json', 'r') as f:
+        with open(f'{os.getcwd()}/static/Resources/temp/user.json', 'r') as f:
             data = json.load(f)
             data['audio'] = str(bytes(get_audio(audio_id)), 'utf-8')
-            with open(f'{os.getcwd()}/static/Resources/temp/{session["user_email"]}.json', 'w') as f:
+            with open(f'{os.getcwd()}/static/Resources/temp/user.json', 'w') as f:
                 f.write(json.dumps(data, indent=4))
 
         return redirect(url_for('video'))
@@ -235,7 +226,7 @@ def select_audio():
 def video():
     images = []
     audio = ""
-    with open(f'{os.getcwd()}/static/Resources/temp/{session["user_email"]}.json', 'r') as f:
+    with open(f'{os.getcwd()}/static/Resources/temp/user.json', 'r') as f:
         data = json.load(f)
         images = data['images']
         audio = data['audio']
@@ -244,7 +235,7 @@ def video():
     
     create_video(clean_images, audio, session["user_email"])
 
-    video_path = f'/Resources/temp/{session["user_email"]}.mp4'
+    video_path = f'/Resources/temp/user.mp4'
     video_src = url_for('static', filename=video_path)
     
     return render_template('video.html', video_src = video_src)

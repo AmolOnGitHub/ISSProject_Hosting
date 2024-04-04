@@ -21,7 +21,7 @@ def convert_base64_to_mp3(audio_data, user_email):
     audio_content = base64.b64decode(audio_encoded)
 
     audio = AudioSegment.from_file(io.BytesIO(audio_content), format="mp3")
-    audio.export(f'{TEMP_PATH}/{user_email}.mp3', format="mp3")
+    audio.export(f'{TEMP_PATH}/user.mp3', format="mp3")
 
 
 def resize_with_padding(image, shape_out, DO_PADDING=True, TINY_FLOAT=1e-5):
@@ -68,7 +68,6 @@ def create_video(image_list, audio = None, user_email = ""):
     
     # Create a video from the images
     clips = [ImageClip(img).set_duration(DEFAULT_IMAGE_LENGTH) for img in cv_images]
-    print(clips)
     video = concatenate_videoclips(clips, method="compose")
 
     # If audio is provided, set it as the audio of the clip
