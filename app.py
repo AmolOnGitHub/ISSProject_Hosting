@@ -229,7 +229,7 @@ def video():
 
     clean_images = [image.split('base64,')[1] for image in images]
     
-    create_video(clean_images, audio, session["user_email"])
+    create_video(clean_images, audio, "user")
 
     video_path = f'/Resources/temp/user.mp4'
     video_src = url_for('static', filename=video_path)
