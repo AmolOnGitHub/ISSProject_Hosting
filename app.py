@@ -36,7 +36,7 @@ jwt = JWTManager(app)
 
 def get_db_connection():
     cert_decoded = base64.b64decode(os.environ['R00T_CERT_BASE64'])
-    cert_path = 'root.crt'
+    cert_path = '/root.crt'
     os.makedirs(os.path.dirname(cert_path), exist_ok=True)
     with open(cert_path, 'wb') as f:
         f.write(cert_decoded)
