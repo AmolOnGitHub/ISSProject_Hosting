@@ -11,7 +11,7 @@ Flask==3.0.2
 Flask-JWT-Extended==4.6.0
 fonttools==4.50.0
 GDAL==3.8.4
-gpg @ file:///private/tmp/gpgme-20231223-6162-ajrkfy/gpgme-1.23.2/lang/python
+# gpg @ file:///private/tmp/gpgme-20231223-6162-ajrkfy/gpgme-1.23.2/lang/python
 gunicorn==21.2.0
 idna==3.6
 imageio==2.34.0
@@ -25,9 +25,10 @@ moviepy==1.0.3
 mysql==0.0.3
 mysql-connector-python==8.3.0
 mysqlclient==2.2.4
-numpy @ file:///private/tmp/numpy-20240206-5894-1wazl8/numpy-1.26.4
+# numpy @ file:///private/tmp/numpy-20240206-5894-1wazl8/numpy-1.26.4
+numpy==1.26.4
 opencv-python==4.9.0.80
-openvino @ file:///private/tmp/openvino-20240120-6451-2ye6ih/openvino-2023.3.0/src/bindings/python/wheel
+# openvino @ file:///private/tmp/openvino-20240120-6451-2ye6ih/openvino-2023.3.0/src/bindings/python/wheel
 packaging==24.0
 pillow==10.2.0
 proglog==0.1.10
@@ -41,9 +42,9 @@ requests==2.31.0
 setuptools==69.2.0
 six==1.16.0
 soupsieve==2.5
-TBB @ file:///private/tmp/tbb-20231202-5067-9guvre/oneTBB-2021.11.0/python
+# TBB @ file:///private/tmp/tbb-20231202-5067-9guvre/oneTBB-2021.11.0/python
 tqdm==4.66.2
 urllib3==2.2.1
 Werkzeug==3.0.1
-wheel @ file:///opt/homebrew/Cellar/python%403.12/3.12.2_1/libexec/wheel-0.42.0-py3-none-any.whl#sha256=5f1ca525bef7466225922019d72cb06a9e91cd3ff807ddd4be1acb84655e5107
+# wheel @ file:///opt/homebrew/Cellar/python%403.12/3.12.2_1/libexec/wheel-0.42.0-py3-none-any.whl#sha256=5f1ca525bef7466225922019d72cb06a9e91cd3ff807ddd4be1acb84655e5107
 wordcloud==1.9.3
