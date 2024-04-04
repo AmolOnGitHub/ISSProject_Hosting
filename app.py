@@ -29,7 +29,7 @@ app.config["JWT_COOKIE_CSRF_PROTECT"] = False
 
 app.config['IMAGE_UPLOADS'] = UPLOAD_PATH
 
-app.secret_key = os.getenv('JWT_SECRET_KEY')
+app.secret_key = os.environ['JWT_SECRET_KEY']
 
 jwt = JWTManager(app)
 
