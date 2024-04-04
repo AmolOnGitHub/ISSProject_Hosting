@@ -240,7 +240,7 @@ def video():
     
     create_video(clean_images, audio, session["user_email"])
 
-    video_path = f'/Resources/temp/{session['user_email']}.mp4'
+    video_path = f'/Resources/temp/{session["user_email"]}.mp4'
     video_src = url_for('static', filename=video_path)
     
     return render_template('video.html', video_src = video_src)
