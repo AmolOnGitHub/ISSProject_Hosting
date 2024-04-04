@@ -17,7 +17,7 @@ def convert_user_tuple_to_dict(user_tuple):
 
 # Establishing connection to the database
 def get_database_connection():
-    print(os.environ["DATABASE_URL"])
+    print(f'test: {os.environ["DATABASE_URL"]}')
     return psycopg2.connect(os.environ["DATABASE_URL"])
 
 
