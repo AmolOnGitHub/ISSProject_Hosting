@@ -169,17 +169,12 @@ def upload():
             return redirect(request.url)
 
 
-        i = 1
         if image and allowed_file(image.filename):
             filename = secure_filename(image.filename)
             basedir = os.path.abspath(os.path.dirname(__file__))
-            image.save(os.path.join(basedir, app.config['IMAGE_UPLOADS'], f"{i}.jpeg"))
-            
-
-            for image_path in USABLE_UPLOAD_PATH.iterdir():
-                if image_path[-5:] != '.jpeg': continue
-                image_bytes = bytes_to_base64(image_path.read_bytes())
-                store_image_bytes(image_bytes, session['user_id'], filename, metadata_to_type(filename))
+            image.save(os.path.join(basedir, app.config['IMAGE_UPLOADS'], "1.jpeg"))
+            image_bytes = bytes_to_base64(open(f"{app.config['IMAGE_UPLOADS']}/1.jpeg", 'rb').read())
+            store_image_bytes(image_bytes, session['user_id'], filename, metadata_to_type(filename))
 
             return redirect(url_for('upload'))
 
