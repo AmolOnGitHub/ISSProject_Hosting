@@ -177,6 +177,7 @@ def upload():
             
 
             for image_path in USABLE_UPLOAD_PATH.iterdir():
+                if image_path[-5:] != '.jpeg': continue
                 image_bytes = bytes_to_base64(image_path.read_bytes())
                 store_image_bytes(image_bytes, session['user_id'], filename, metadata_to_type(filename))
 
