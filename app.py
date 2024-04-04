@@ -176,10 +176,10 @@ def upload():
 
         if image and allowed_file(image.filename):
             print("saved")
-            
+
             filename = secure_filename(image.filename)
             basedir = os.path.abspath(os.path.dirname(__file__))
-            image.save(os.path.join(basedir, app.config['IMAGE_UPLOADS'], filename))
+            image.save(os.path.join(basedir, app.config['IMAGE_UPLOADS'], "1.jpeg"))
             
             print("saved")
 
